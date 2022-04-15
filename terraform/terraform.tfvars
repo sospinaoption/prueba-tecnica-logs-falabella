@@ -4,3 +4,4 @@ output_bucket_name = "consumer-meteorological-data" # Nombre del bucket que reci
 cloud_function_bucket_name = "cloud-function-source-sospina" # Nombre del bucket GCP que almacena el codigo fuente de la cloud function que alimenta el pub/sub
 lyfecyle_condition_input_bucket = 1 # dias transcurridos desde la carga de un archiov antes de ser eliminado del bucket de entrada
 region_cloud_function_bucket = "us-central1" # Region del bucket que almacena la cloud function
+pub_sub_topic_meteorological_data_name = "pubsup-topic-temperature-data"

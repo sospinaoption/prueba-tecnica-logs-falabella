@@ -36,6 +36,11 @@ resource "google_cloudfunctions_function" "function" {
         resource   = var.input_bucket_name
     }
 
+    environment_variables = {
+        project_id = var.project_id
+        topic_id = var.pub_sub_topic_meteorological_data_name
+    }
+
     # Dependencies are automatically inferred so these lines can be deleted
     depends_on            = [
         google_storage_bucket.cloud-function-bucket,

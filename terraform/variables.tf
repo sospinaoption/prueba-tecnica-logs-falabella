@@ -53,3 +53,8 @@ variable "cloud_function_bucket_storage_class" {
     default = "standard"
 }
 
+variable "pub_sub_topic_meteorological_data_name" {
+  description = "Nombre del topico de pub sub al que se publicaran los datos meterologicos originales cargados por el usuario"
+  type = string
+}
+
