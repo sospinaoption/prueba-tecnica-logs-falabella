@@ -31,11 +31,12 @@ def publish_storage_file_to_pubsub(event, context):
 
     publisher = pubsub_v1.PublisherClient()
     topic_path = publisher.topic_path(project_id, topic_id)
+    
 
-    try:
-        publisher.publish(topic_path, event['bucket'] + "/" + event['name'])
-        print(topic_path)
-        print(event['bucket'] + "/" + event['name'])
-        return f"Publish process was successfull"
-    except Exception as e:
-        return f"Publish process failed with error: " + e
+    # try:
+    message = event['bucket'] + "/" + event['name']
+    print(publisher.publish(topic_path, message.encode('utf-8')))
+    return f"Publish process was successfull"
+    # except Exception as e:
+    #     print(f"Publish process failed with error: " + str(e))
+    #     return f"Publish process failed with error: " + str(e)

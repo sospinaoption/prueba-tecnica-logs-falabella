@@ -27,7 +27,7 @@ resource "google_cloudfunctions_function" "function" {
     source_archive_object = google_storage_bucket_object.zip.name
 
     # Must match the function name in the cloud function `main.py` source code
-    entry_point           = "hello_gcs"
+    entry_point           = "publish_storage_file_to_pubsub"
     region = var.region_cloud_function_bucket
     
     # 
