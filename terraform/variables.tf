@@ -68,3 +68,17 @@ variable "pub_sub_meteorological_data_subscription_push" {
   type = string
 }
 
+variable "cloud_run_microservice_name" {
+  description = "Nombre del microservicio de cloud run"
+  type = string
+}
+
+variable "region_cloud_run_microservice" {
+  description = "Region del microservicio de cloud run"
+  type = string
+}
+
+variable "cloud_run_microservice_container" {
+  description = "Ruta en el container registry del contenedor que define el microservicio"
+  type = string
+}

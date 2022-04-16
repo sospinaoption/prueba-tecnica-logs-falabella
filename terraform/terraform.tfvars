@@ -7,3 +7,6 @@ region_cloud_function_bucket = "us-central1" # Region del bucket que almacena la
 pub_sub_topic_meteorological_data_name = "pubsup-topic-temperature-data"
 pub_sub_meteorological_data_subscription_pull = "pubsub-subscription-meteorological-data-pull"
 pub_sub_meteorological_data_subscription_push = "pubsub-subscription-meteorological-data-push"
+cloud_run_microservice_name = "cloud-run-microservice"
+cloud_run_microservice_container = "gcr.io/google-samples/hello-app:1.0"
+region_cloud_run_microservice = "us-central1"
