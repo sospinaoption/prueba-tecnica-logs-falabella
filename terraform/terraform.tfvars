@@ -5,3 +5,5 @@ cloud_function_bucket_name = "cloud-function-source-sospina" # Nombre del bucket
 lyfecyle_condition_input_bucket = 1 # dias transcurridos desde la carga de un archiov antes de ser eliminado del bucket de entrada
 region_cloud_function_bucket = "us-central1" # Region del bucket que almacena la cloud function
 pub_sub_topic_meteorological_data_name = "pubsup-topic-temperature-data"
+pub_sub_meteorological_data_subscription_pull = "pubsub-subscription-meteorological-data-pull"
+pub_sub_meteorological_data_subscription_push = "pubsub-subscription-meteorological-data-push"

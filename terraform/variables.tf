@@ -58,3 +58,13 @@ variable "pub_sub_topic_meteorological_data_name" {
   type = string
 }
 
+variable "pub_sub_meteorological_data_subscription_pull" {
+  description = "Nombre de la suscripcion pub sub encargada de hacer pull de los mensajes que se envian al topico"
+  type = string
+}
+
+variable "pub_sub_meteorological_data_subscription_push" {
+  description = "Nombre de la suscripcion pub sub encargada de hacer push de los mensajes que se envian al topico"
+  type = string
+}
+
