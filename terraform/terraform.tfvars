@@ -10,3 +10,5 @@ pub_sub_meteorological_data_subscription_push = "pubsub-subscription-meteorologi
 cloud_run_microservice_name = "cloud-run-microservice"
 cloud_run_microservice_container = "us-central1-docker.pkg.dev/sospina-test/falabella-logs-test-docker-registry/cloud-run-microservice"
 region_cloud_run_microservice = "us-central1"
+project_number = "398539517064"
+pubsub_service_account_name = "falabella-logs-pubsub" 

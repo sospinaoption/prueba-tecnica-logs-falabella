@@ -82,3 +82,13 @@ variable "cloud_run_microservice_container" {
   description = "Ruta en el container registry del contenedor que define el microservicio"
   type = string
 }
+
+variable "pubsub_service_account_name" {
+  description = "ID de la service account configurada para pubsub"
+  type = string
+}
+
+variable "project_number" {
+  description = "Numero de proyecto de GCP"
+  type = string
+}

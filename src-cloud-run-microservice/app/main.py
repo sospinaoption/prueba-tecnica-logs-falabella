@@ -1,47 +1,39 @@
-import base64
-import os
+# from fastapi import FastAPI, Request
 
-from flask import Flask, request
+# app = FastAPI()
 
+# @app.post("/")
+# def root(request: Request):
 
-app = Flask(__name__)
-# [END run_pubsub_server_setup]
-# [END cloudrun_pubsub_server_setup]
-
-
-# [START cloudrun_pubsub_handler]
-# [START run_pubsub_handler]
-@app.route("/", methods=["POST"])
-def index():
-    envelope = request.get_json()
-    if not envelope:
-        msg = "no Pub/Sub message received"
-        print(f"error: {msg}")
-        return f"Bad Request: {msg}", 400
-
-    if not isinstance(envelope, dict) or "message" not in envelope:
-        msg = "invalid Pub/Sub message format"
-        print(f"error: {msg}")
-        return f"Bad Request: {msg}", 400
-
-    pubsub_message = envelope["message"]
-
-    name = "World"
-    if isinstance(pubsub_message, dict) and "data" in pubsub_message:
-        name = base64.b64decode(pubsub_message["data"]).decode("utf-8").strip()
-
-    print(f"Hello {name}!")
-
-    return ("", 204)
+#     print(request.headers)
+#     # Example response
+#     {
+#         'host': 'eventarc-test-s6gfdsap7fda-uc.a.run.app',
+#         'content-type': 'application/json',
+#         'content-length': '838',
+#         'accept': 'application/json',
+#         'from': 'noreply@google.com',
+#         'user-agent': 'APIs-Google; (+https://developers.google.com/webmasters/APIs-Google.html)',
+#         'x-cloud-trace-context': '483010b253289e906d9324f80bad0cd3/9989356814841849077;o=1',
+#         'traceparent': '00-483010b253389e906d9324f80bad0cd3-8aa15318e346a4f5-01',
+#         'x-forwarded-for': '66.112.6.102',
+#         'x-forwarded-proto': 'https',
+#         'forwarded': 'for="66.112.6.102";proto=https',
+#          'accept-encoding': 'gzip, deflate, br',
+#          'ce-id': '33212954fdsa24407',
+#          'ce-source': '//storage.googleapis.com/projects/_/buckets/mappable-upload-data-dev',
+#          'ce-specversion': '1.0',
+#          'ce-type': 'google.cloud.storage.object.v1.finalized',
+#          'ce-subject': 'objects/<object name in storage>',
+#          'ce-time': '2021-11-02T11:10:56.505568Z',
+#          'ce-bucket': '<bucket name>'
+#          }
 
 
-# [END run_pubsub_handler]
-# [END cloudrun_pubsub_handler]
+from fastapi import FastAPI
 
+app = FastAPI()
 
-if __name__ == "__main__":
-    PORT = int(os.getenv("PORT")) if os.getenv("PORT") else 8080
-
-    # This is used when running locally. Gunicorn is used to run the
-    # application on Cloud Run. See entrypoint in Dockerfile.
-    app.run(host="127.0.0.1", port=PORT, debug=True)
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
