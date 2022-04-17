@@ -52,7 +52,7 @@ def index():
     if isinstance(pubsub_message, dict) and "data" in pubsub_message:
         
         path_file = base64.b64decode(pubsub_message["data"]).decode("utf-8").strip()
-        print(f"Captured path: {path_file}!")
+        print(f"Captured path: {path_file}")
         
         storage_client = storage.Client()
         bucket = storage_client.get_bucket(path_file.split("/")[0])
@@ -68,7 +68,13 @@ def index():
             data.loc[:, "Latitude"] = data.loc[:, "Latitude"].str.encode('utf-8').apply(lambda x: hashlib.sha256(x).hexdigest())
 
             for country in data.Country.unique():
-                data.loc[data.loc[:, "Country"] == country].to_csv(f"gs://{OUTPUT_BUCKET}/{country}.csv", encoding = "utf-8", index = False)
+                print(f"gs://{OUTPUT_BUCKET}/{country}.csv")
+                output_filename = f"{country}.csv"
+                data.loc[data.loc[:, "Country"] == country].to_csv(output_filename, encoding = "utf-8", index = False)
+                output_bucket = storage_client.bucket(OUTPUT_BUCKET)
+                output_blob = output_bucket.blob(output_filename)
+                output_blob.upload_from_filename(output_filename)
+                os.remove(output_filename)
 
         except Exception as error:
             logger.error(error)
