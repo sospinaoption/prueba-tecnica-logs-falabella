@@ -12,6 +12,12 @@ resource "google_cloud_run_service" "cloud_run_microservice" {
             name  = "OUTPUT_BUCKET"
             value = var.output_bucket_name
         }
+
+        resources {
+            limits = {
+            memory = "3Gi"
+            }
+        }
       }
     }
   }
