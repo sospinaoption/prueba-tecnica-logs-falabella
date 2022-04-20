@@ -51,7 +51,7 @@ def index():
             for country in data.Country.unique():
                 print(f"gs://{OUTPUT_BUCKET}/{country}.csv")
                 output_filename = f"{country}.csv"
-                data.loc[data.loc[:, "Country"] == country].to_csv(output_filename, encoding = "utf-8", index = False)
+                data.loc[data.loc[:, "Country"] == country].to_csv(output_filename, index = False)
                 output_bucket = storage_client.bucket(OUTPUT_BUCKET)
                 output_blob = output_bucket.blob(output_filename)
                 output_blob.upload_from_filename(output_filename)
