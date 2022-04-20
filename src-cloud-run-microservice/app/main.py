@@ -1,22 +1,3 @@
-# from fastapi import FastAPI, Request
-
-# app = FastAPI()
-
-# @app.post("/")
-# async def root(request: Request):
-
-#     print(request.headers)
-#     # Example response
-
-# # from fastapi import FastAPI
-
-# # app = FastAPI()
-
-# # @app.get("/")
-# # async def root():
-# #     return {"message": "Hello World"}
-
-
 import base64
 from importlib.resources import path
 import os
@@ -48,7 +29,7 @@ def index():
 
     pubsub_message = envelope["message"]
 
-    name = "World"
+
     if isinstance(pubsub_message, dict) and "data" in pubsub_message:
         
         path_file = base64.b64decode(pubsub_message["data"]).decode("utf-8").strip()
@@ -86,7 +67,4 @@ def index():
 
 if __name__ == "__main__":
     PORT = int(os.getenv("PORT")) if os.getenv("PORT") else 8080
-
-    # This is used when running locally. Gunicorn is used to run the
-    # application on Cloud Run. See entrypoint in Dockerfile.
     app.run(host="127.0.0.1", port=PORT, debug=False)
